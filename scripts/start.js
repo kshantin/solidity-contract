@@ -4,10 +4,10 @@ async function main() {
   const keyboardsContract = await keyboardsContractFactory.deploy();
   await keyboardsContract.deployed();
 
-  const keyboardTxn1 = await keyboardsContract.create("A really great keyboard!");
+  const keyboardTxn1 = await keyboardsContract.create(0, true, "sepia");
   await keyboardTxn1.wait();
 
-  const keyboardTx2 = await keyboardsContract.connect(somebodyElse).create("An even better keyboard!");
+  const keyboardTx2 = await keyboardsContract.connect(somebodyElse).create(1, false, "grayscale");
   await keyboardTx2.wait();
 
   keyboards = await keyboardsContract.getKeyboards();
